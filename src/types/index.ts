@@ -1,14 +1,4 @@
-// export interface Book {
-//   _id: string;
-//   title: string;
-//   author: string;
-//   genre: string;
-//   isbn: string;
-//   description?: string;
-//   copies: number;
-//   available: boolean;
-// }
-// src/types/index.ts
+
 
 export interface IBook {
   _id: string; // from MongoDB
@@ -33,7 +23,15 @@ export interface IBorrowData {
 }
 
 export interface IBorrowSummary {
-  title: string;
-  isbn: string;
   totalQuantity: number;
+  book: {
+    title: string;
+    isbn: string;
+  };
+}
+
+export interface IBorrowSummaryResponse {
+  success: boolean;
+  message: string;
+  data: IBorrowSummary[];
 }

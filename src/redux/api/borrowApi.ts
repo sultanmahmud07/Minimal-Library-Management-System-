@@ -1,4 +1,4 @@
-import type { IBorrowData, IBorrowSummary } from '@/types';
+import type { IBorrowData, IBorrowSummaryResponse } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const borrowApi = createApi({
@@ -14,10 +14,10 @@ export const borrowApi = createApi({
       }),
       invalidatesTags: ['Borrow'],
     }),
-    getBorrowSummary: builder.query<IBorrowSummary[], void>({
-      query: () => '/borrow-summary',
-      providesTags: ['Borrow'],
-    }),
+  getBorrowSummary: builder.query<IBorrowSummaryResponse, void>({
+  query: () => "/borrow",
+  providesTags: ["Borrow"],
+}),
   }),
 });
 
