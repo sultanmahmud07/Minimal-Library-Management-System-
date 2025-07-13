@@ -1,4 +1,4 @@
-import type { IBook } from '@/types';
+import type { IBook, IBookResponse } from '@/types';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const booksApi = createApi({
@@ -6,7 +6,7 @@ export const booksApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://localhost:5000/api' }),
   tagTypes: ['Books'],
   endpoints: (builder) => ({
-    getBooks: builder.query<IBook[], void>({
+    getBooks: builder.query<IBookResponse, void>({
       query: () => '/books',
       providesTags: ['Books'],
     }),

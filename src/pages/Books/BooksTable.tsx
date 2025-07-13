@@ -9,44 +9,19 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2, BookOpen } from "lucide-react";
-import { useState } from "react";
+import { useGetBooksQuery } from "@/redux/api/booksApi";
+import type { IBook } from "@/types";
 
-export interface Book {
-  _id: string;
-  title: string;
-  author: string;
-  genre: string;
-  isbn: string;
-  description: string;
-  copies: number;
-  available?: boolean; // optional — will compute from copies
-}
 
-const mockBooks: Book[] = [
-  {
-    _id: "1",
-    title: "The Theory of Everything",
-    author: "Stephen Hawking",
-    genre: "SCIENCE",
-    isbn: "0780553380163",
-    description: "An overview of cosmology and black holes.",
-    copies: 5,
-  },
-  {
-    _id: "2",
-    title: "The Grand Design",
-    author: "Stephen Hawking",
-    genre: "SCIENCE",
-    isbn: "055338466X",
-    description: "Discusses M-theory and the origins of the universe.",
-    copies: 0,
-  },
-];
 
 const BooksTable = () => {
-  const [books, setBooks] = useState<Book[]>(mockBooks);
+  const { data: books, isLoading, isError } = useGetBooksQuery();
 
-  const handleEdit = (book: Book) => {
+  if (isLoading) return <p>Loading...</p>;
+  if (isError || !books) return <p>Error loading books.</p>;
+console.log(books.data)
+
+  const handleEdit = (book: IBook) => {
     alert(`Edit book: ${book.title}`);
     // You can open a modal here with book data
   };
@@ -54,11 +29,11 @@ const BooksTable = () => {
   const handleDelete = (bookId: string) => {
     const confirmDelete = window.confirm("Are you sure you want to delete?");
     if (confirmDelete) {
-      setBooks((prev) => prev.filter((book) => book._id !== bookId));
+      console.log(bookId)
     }
   };
 
-  const handleBorrow = (book: Book) => {
+  const handleBorrow = (book: IBook) => {
     if (book.copies === 0) {
       alert("This book is currently unavailable.");
       return;
@@ -73,16 +48,7 @@ const BooksTable = () => {
       return;
     }
 
-    setBooks((prev) =>
-      prev.map((b) =>
-        b._id === book._id
-          ? {
-              ...b,
-              copies: b.copies - borrowQty,
-            }
-          : b
-      )
-    );
+  
 
     alert(`You borrowed ${borrowQty} copy/copies of "${book.title}"`);
   };
@@ -103,7 +69,7 @@ const BooksTable = () => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {books.map((book) => (
+          {books?.data?.map((book) => (
             <TableRow key={book._id}>
               <TableCell className="font-medium">{book.title}</TableCell>
               <TableCell>{book.author}</TableCell>
@@ -114,7 +80,7 @@ const BooksTable = () => {
                 {book.copies > 0 ? (
                   <span className="text-green-600 font-medium">Yes</span>
                 ) : (
-                  <span className="text-red-500 font-medium">No</span>
+                  <span className="text-red-500 font-medium">Unavailable</span>
                 )}
               </TableCell>
               <TableCell className="text-right space-x-1">

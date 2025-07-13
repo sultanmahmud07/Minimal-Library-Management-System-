@@ -20,6 +20,11 @@ export interface IBook {
   copies: number;
   available: boolean;
 }
+export interface IBookResponse {
+  success: boolean;
+  message: string;
+  data: IBook[];
+}
 
 export interface IBorrowData {
   book: string;
