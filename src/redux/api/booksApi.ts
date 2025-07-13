@@ -10,10 +10,10 @@ export const booksApi = createApi({
       query: () => '/books',
       providesTags: ['Books'],
     }),
-    getBook: builder.query<IBook, string>({
+    getBook: builder.query({
       query: (id) => `/books/${id}`,
     }),
-    createBook: builder.mutation<void, Partial<IBook>>({
+    createBook: builder.mutation({
       query: (body) => ({
         url: '/books',
         method: 'POST',

@@ -17,17 +17,34 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/select";
+
 import { useCreateBookMutation } from "@/redux/api/booksApi";
+
+const genreOptions = [
+  "FICTION",
+  "NON_FICTION",
+  "SCIENCE",
+  "HISTORY",
+  "BIOGRAPHY",
+  "FANTASY",
+] as const;
 
 // ✅ Schema Validation
 const formSchema = z.object({
   title: z.string().min(1, "Title is required"),
   author: z.string().min(1, "Author is required"),
-  genre: z.string().min(1, "Genre is required"),
-  isbn: z.string().min(10, "ISBN is required"),
+  genre: z.enum(genreOptions, { required_error: "Genre is required" }),
+  isbn: z.string().min(10, "ISBN is required (min 10 digits)"),
   description: z.string().min(1, "Description is required"),
   copies: z.coerce.number().min(0, "Copies must be at least 0"),
-  available: z.boolean().default(true).optional(),
+  available: z.boolean().optional().default(true),
 });
 
 type CreateBookFormData = z.infer<typeof formSchema>;
@@ -41,7 +58,7 @@ const CreateBook = () => {
     defaultValues: {
       title: "",
       author: "",
-      genre: "",
+      genre: "FICTION",
       isbn: "",
       description: "",
       copies: 1,
@@ -52,25 +69,23 @@ const CreateBook = () => {
   const onSubmit = async (values: CreateBookFormData) => {
     try {
       await createBook(values).unwrap();
-      toast.success("Book created successfully!");
+      toast.success("✅ Book created successfully!");
       navigate("/books");
     } catch (error: any) {
-      toast.error(
-        error?.data?.message || "Something went wrong while creating the book."
-      );
+      toast.error(error?.data?.message || "❌ Failed to create book.");
     }
   };
 
   return (
-    <div className="main_container py-8">
-      <h2 className="text-2xl font-bold mb-6 text-center text-blue-700">
-        📚 Add a New Book
+    <div className="main_container py-10">
+      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
+        📖 Add a New Book
       </h2>
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="grid grid-cols-1 md:grid-cols-2 gap-5 bg-white p-6 rounded-xl shadow-md"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-white p-8 rounded-xl shadow-xl"
         >
           {/* Title */}
           <FormField
@@ -80,7 +95,11 @@ const CreateBook = () => {
               <FormItem>
                 <FormLabel>Title</FormLabel>
                 <FormControl>
-                  <Input placeholder="Enter book title" {...field} />
+                  <Input
+                    placeholder="Enter book title"
+                    {...field}
+                    className="focus:ring-2 focus:ring-blue-400"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -95,7 +114,11 @@ const CreateBook = () => {
               <FormItem>
                 <FormLabel>Author</FormLabel>
                 <FormControl>
-                  <Input placeholder="Author name" {...field} />
+                  <Input
+                    placeholder="Author name"
+                    {...field}
+                    className="focus:ring-2 focus:ring-blue-400"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -110,7 +133,21 @@ const CreateBook = () => {
               <FormItem>
                 <FormLabel>Genre</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g. Science, Fiction" {...field} />
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <SelectTrigger className="w-full">
+                      <SelectValue placeholder="Select genre" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {genreOptions.map((genre) => (
+                        <SelectItem key={genre} value={genre}>
+                          {genre.replace("_", " ")}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -125,7 +162,11 @@ const CreateBook = () => {
               <FormItem>
                 <FormLabel>ISBN</FormLabel>
                 <FormControl>
-                  <Input placeholder="ISBN number" {...field} />
+                  <Input
+                    placeholder="ISBN number"
+                    {...field}
+                    className="focus:ring-2 focus:ring-blue-400"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -140,9 +181,16 @@ const CreateBook = () => {
               <FormItem>
                 <FormLabel>Copies</FormLabel>
                 <FormControl>
-                  <Input type="number" min={0} {...field} />
+                  <Input
+                    type="number"
+                    min={0}
+                    {...field}
+                    className="focus:ring-2 focus:ring-blue-400"
+                  />
                 </FormControl>
-                <FormDescription>How many copies are available</FormDescription>
+                <FormDescription>
+                  Number of copies available in the library
+                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -163,9 +211,7 @@ const CreateBook = () => {
                     }
                   />
                 </FormControl>
-                <FormDescription>
-                  Check if this book is currently available
-                </FormDescription>
+                <FormDescription>Is this book available?</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -180,9 +226,10 @@ const CreateBook = () => {
                 <FormLabel>Description</FormLabel>
                 <FormControl>
                   <Textarea
-                    placeholder="Short description..."
+                    placeholder="Write a short summary of the book..."
                     rows={4}
                     {...field}
+                    className="focus:ring-2 focus:ring-blue-400"
                   />
                 </FormControl>
                 <FormMessage />
@@ -192,7 +239,7 @@ const CreateBook = () => {
 
           {/* Submit */}
           <div className="md:col-span-2 text-center mt-4">
-            <Button type="submit" disabled={isLoading}>
+            <Button type="submit" disabled={isLoading} className="px-10">
               {isLoading ? "Submitting..." : "Add Book"}
             </Button>
           </div>

@@ -19,11 +19,10 @@ const BooksTable = () => {
 
   if (isLoading) return <p>Loading...</p>;
   if (isError || !books) return <p>Error loading books.</p>;
-console.log(books.data)
+// console.log(books.data)
 
   const handleEdit = (book: IBook) => {
     alert(`Edit book: ${book.title}`);
-    // You can open a modal here with book data
   };
 
   const handleDelete = (bookId: string) => {
