@@ -10,9 +10,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { Pencil, Trash2 } from "lucide-react";
 import { useDeleteBookMutation, useGetBooksQuery } from "@/redux/api/booksApi";
-import type { IBook } from "@/types";
 import Swal from "sweetalert2";
 import BorrowModal from "./BorrowModal";
+import EditBookModal from "./EditBookModal";
 
 
 
@@ -22,10 +22,6 @@ const [deleteBook] = useDeleteBookMutation();
   if (isLoading) return <p>Loading...</p>;
   if (isError || !books) return <p>Error loading books.</p>;
   // console.log(books.data)
-
-  const handleEdit = (book: IBook) => {
-    alert(`Edit book: ${book.title}`);
-  };
 
   const handleDelete = (bookId: string) => {
     Swal.fire({
@@ -51,26 +47,6 @@ const [deleteBook] = useDeleteBookMutation();
     });
   };
 
-
-  // const handleBorrow = (book: IBook) => {
-  //   if (book.copies === 0) {
-  //     alert("This book is currently unavailable.");
-  //     return;
-  //   }
-
-  //   const borrowQty = Number(
-  //     prompt(`Enter quantity to borrow (1 - ${book.copies}):`, "1")
-  //   );
-
-  //   if (!borrowQty || borrowQty < 1 || borrowQty > book.copies) {
-  //     alert("Invalid quantity.");
-  //     return;
-  //   }
-
-
-
-  //   alert(`You borrowed ${borrowQty} copy/copies of "${book.title}"`);
-  // };
 
   return (
     <div className="overflow-x-auto bg-white shadow rounded-md p-4 md:pb-10">
@@ -103,13 +79,11 @@ const [deleteBook] = useDeleteBookMutation();
                 )}
               </TableCell>
               <TableCell className="text-right space-x-1">
-                <Button
-                  size="sm"
-                  variant="outline"
-                  onClick={() => handleEdit(book)}
-                >
-                  <Pencil className="w-4 h-4" />
-                </Button>
+               
+                   <EditBookModal book={book} />
+                 
+               
+
                 <Button
                   size="sm"
                   variant="destructive"
