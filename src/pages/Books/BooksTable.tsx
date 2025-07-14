@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Pencil, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useDeleteBookMutation, useGetBooksQuery } from "@/redux/api/booksApi";
 import Swal from "sweetalert2";
 import BorrowModal from "./BorrowModal";
