@@ -1,7 +1,7 @@
 
 const ViewBorrow = () => {
   return (
-    <div>ViewBorrow</div>
+    <div className="pt-20">ViewBorrow</div>
   )
 }
 

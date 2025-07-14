@@ -5,7 +5,7 @@ import PopularAuthors from "./PopularAuthors/PopularAuthors"
 
 const Home = () => {
   return (
-    <div>
+    <div className="pt-20">
       <Banner></Banner>
       <LatestBooks></LatestBooks>
       <PopularAuthors></PopularAuthors>

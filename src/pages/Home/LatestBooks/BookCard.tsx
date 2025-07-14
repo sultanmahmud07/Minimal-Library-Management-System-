@@ -11,14 +11,14 @@ const BookCard = ({book}: BookCardProps) => {
                 alt={book.title}
                 className="w-full aspect-video object-cover transition-transform group-hover:scale-105"
               />
-              <CardContent className="p-4 text-center">
+              <CardContent className="p-3 text-center">
                 <h3 className="font-semibold text-base leading-tight mb-1">
                   {book.title}
                 </h3>
-                <p className="text-sm text-gray-600 mb-1">{book.author}</p>
+                <p className="text-sm text-gray-600 uppercase font-semibold mb-1">{book.author}</p>
                
-                <p className="text-sm text-red-600 font-medium">
-                 N/A
+                <p className="text-sm">
+                 {book?.description}
                 </p>
               </CardContent>
             </Card>

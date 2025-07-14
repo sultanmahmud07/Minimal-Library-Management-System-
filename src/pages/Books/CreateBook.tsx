@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select";
 
 import { useCreateBookMutation } from "@/redux/api/booksApi";
+import type { IApiError } from "@/types";
 
 const genreOptions = [
   "FICTION",
@@ -71,15 +72,16 @@ const CreateBook = () => {
       await createBook(values).unwrap();
       toast.success("✅ Book created successfully!");
       navigate("/books");
-    } catch (error: any) {
-      toast.error(error?.data?.message || "❌ Failed to create book.");
+    } catch (error) {
+      const err = error as IApiError;
+      toast.error(err?.data?.message || "❌ Failed to create book.");
     }
   };
 
   return (
-    <div className="main_container py-10">
-      <h2 className="text-3xl font-bold text-center  mb-8">
-        📖 Add a New Book
+    <div className="main_container py-10 pt-20">
+      <h2 className="text-2xl md:text-3xl font-bold   my-5">
+        Add a New Book
       </h2>
 
       <Form {...form}>
@@ -238,7 +240,7 @@ const CreateBook = () => {
           />
 
           {/* Submit */}
-          <div className="md:col-span-2 text-center mt-4">
+          <div className="md:col-span-2  mt-4">
             <Button type="submit" disabled={isLoading} className="px-10">
               {isLoading ? "Submitting..." : "Add Book"}
             </Button>

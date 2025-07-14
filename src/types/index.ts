@@ -35,3 +35,12 @@ export interface IBorrowSummaryResponse {
   message: string;
   data: IBorrowSummary[];
 }
+
+export interface IApiError {
+  status: number;
+  data: {
+    success: boolean;
+    message: string;
+    error?: unknown;
+  };
+}

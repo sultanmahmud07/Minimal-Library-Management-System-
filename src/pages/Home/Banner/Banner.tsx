@@ -39,7 +39,7 @@ const Banner = () => {
             Browse from a wide collection of books in our digital library.
             Enjoy clean design, fast search, and easy borrowing.
           </p>
-          <Button className="mt-4 text-white bg-blue-600 hover:bg-blue-700">
+          <Button className="mt-4 text-white bg-primary hover:bg-secondary">
             Explore All Books
           </Button>
         </div>

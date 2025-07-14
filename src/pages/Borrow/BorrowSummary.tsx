@@ -31,23 +31,23 @@ const BorrowSummary = () => {
 
 // console.log(borrows)
   return (
-    <div className="main_container py-10">
-      <h2 className="text-3xl font-bold text-center text-indigo-700 mb-8">
-        📊 Borrow Summary
+    <div className="main_container py-10 pt-20">
+      <h2 className="text-2xl md:text-3xl font-bold my-5">
+        Borrow Summary
       </h2>
 
       <div className="overflow-x-auto bg-white shadow-md rounded-lg p-4">
         <Table>
           <TableCaption>A summary of all borrowed books</TableCaption>
           <TableHeader>
-            <TableRow>
-              <TableHead className="text-indigo-700 font-semibold text-base">
+            <TableRow className="bg-gray-200">
+              <TableHead className=" font-semibold text-base">
                 Book Title
               </TableHead>
-              <TableHead className="text-indigo-700 font-semibold text-base">
+              <TableHead className=" font-semibold text-base">
                 ISBN
               </TableHead>
-              <TableHead className="text-indigo-700 font-semibold text-base text-center">
+              <TableHead className=" font-semibold text-base text-center">
                 Total Quantity Borrowed
               </TableHead>
             </TableRow>
