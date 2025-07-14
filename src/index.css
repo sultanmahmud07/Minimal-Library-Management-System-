@@ -126,3 +126,6 @@
 .active{
   color: #009672;
 }
+.carousel_class div{
+height: 100%;
+}
