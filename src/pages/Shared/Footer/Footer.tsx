@@ -23,7 +23,8 @@ const Footer = () => {
             alt="logo"
             className="w-28"
           />
-          <p className="py-4">Whatever it is that you care about, there will be a charity working on it. Charities help in lots of different ways</p>
+          <p className="pt-2">Empowering Readers, One Book at a Time.</p>
+           <p className="py-2">Discover, borrow, and manage books with ease through our simple and intuitive library system.</p>
           <div className="flex items-center gap-3 py-5">
             <a href="https://www.facebook.com/joltorongo.awt" className="flex items-center justify-center transition text-primary text-xl">
               <FaFacebookF />

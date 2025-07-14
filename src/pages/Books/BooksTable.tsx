@@ -8,17 +8,18 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { Trash2 } from "lucide-react";
+import { Eye, Trash2 } from "lucide-react";
 import { useDeleteBookMutation, useGetBooksQuery } from "@/redux/api/booksApi";
 import Swal from "sweetalert2";
 import BorrowModal from "./BorrowModal";
 import EditBookModal from "./EditBookModal";
+import { Link } from "react-router";
 
 
 
 const BooksTable = () => {
   const { data: books, isLoading, isError } = useGetBooksQuery();
-const [deleteBook] = useDeleteBookMutation();
+  const [deleteBook] = useDeleteBookMutation();
   if (isLoading) return <p>Loading...</p>;
   if (isError || !books) return <p>Error loading books.</p>;
   // console.log(books.data)
@@ -79,10 +80,15 @@ const [deleteBook] = useDeleteBookMutation();
                 )}
               </TableCell>
               <TableCell className="text-right space-x-1">
-               
-                   <EditBookModal book={book} />
-                 
-               
+                <Link to={`/books/${book._id}`}>
+                  <Button size="sm" variant="ghost">
+                    <Eye className="w-5 h-5" />
+                  </Button>
+                </Link>
+
+                <EditBookModal book={book} />
+
+
 
                 <Button
                   size="sm"

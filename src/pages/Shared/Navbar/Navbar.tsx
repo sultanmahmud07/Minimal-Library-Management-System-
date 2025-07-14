@@ -43,14 +43,14 @@ const Navbar = () => {
                 alt="logo"
                 width={200}
                 height={100}
-                className="w-16"
+                className="w-14"
               />
-              {/* <span className="text-primary text-xs uppercase font-bold">Books Finder</span> */}
+              <span className="text-primary text-xs uppercase font-bold">Books Finder</span>
             </Link>
           </div>
           {/* NAv manu side here >>>>>>>>>>>>>>>> */}
           <div className={`absolute ${navToggle ? "left-0" : "left-[-120%] w-1/2 "
-            } top-[4.5rem] flex w-full shadow md:shadow-none flex-col py-2 transition-all duration-300  lg:static lg:w-[unset] lg:flex-row  lg:bg-transparent lg:pb-0 lg:pt-0 `}
+            } top-[4.9rem] flex w-full shadow md:shadow-none flex-col py-2 transition-all duration-300  lg:static lg:w-[unset] lg:flex-row  lg:bg-transparent lg:pb-0 lg:pt-0 `}
           >
             <ul className="nav_manu capitalize bg-white flex pb-20 md:pb-0 pl-10 md:pl-0 flex-col lg:flex-row items-start md:items-center justify-center gap-5 md:gap-3 px-1">
               {navData.map(({ path, title }) => (

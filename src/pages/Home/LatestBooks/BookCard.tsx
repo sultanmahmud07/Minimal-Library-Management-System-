@@ -1,17 +1,23 @@
+import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card'
 import BorrowModal from '@/pages/Books/BorrowModal';
 import type { IBook } from '@/types';
+import { Eye } from 'lucide-react';
+import { Link } from 'react-router';
+import icon from "../../../assets/book-icon.png"
 interface BookCardProps {
   book: IBook;
 }
 const BookCard = ({ book }: BookCardProps) => {
   return (
     <Card className="overflow-hidden group transition-all shadow-sm hover:shadow-md">
-      <img
-        src={"https://img.freepik.com/premium-vector/book-icon-symbol-mark-filled-style_1223784-28375.jpg?semt=ais_hybrid&w=740"}
+     <div className="flex items-center justify-center">
+       <img
+        src={icon}
         alt={book.title}
-        className="w-full aspect-video object-cover transition-transform group-hover:scale-105"
+        className="w-1/2 transition-transform group-hover:scale-105"
       />
+     </div>
       <CardContent className="p-3 text-center">
         <h3 className="font-semibold text-base leading-tight mb-1">
           {book.title}
@@ -28,7 +34,14 @@ const BookCard = ({ book }: BookCardProps) => {
                   <span className="text-red-500 font-medium">Unavailable</span>
                 )}
         </p>
+         <div className="flex justify-center items-center gap-2">
         <BorrowModal book={book} />
+           <Link className='border border-primary rounded-lg px-2' to={`/books/${book._id}`}>
+                  <Button size="sm" variant="ghost">
+                    <Eye className="w-5 h-5" />
+                  </Button>
+                </Link>
+         </div>
       </CardContent>
     </Card>
   )

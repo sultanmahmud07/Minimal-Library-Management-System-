@@ -10,7 +10,7 @@ const FAQ = () => {
           <h5 className='text-primary font-bold capitalize md:text-sm'>Need Help?</h5>
           <h2 className='section_title text-2xl md:text-4xl mt-2'>The Answers to All Your Questions</h2>
           <p className="my-2 md:my-4 max-w-2xl mx-auto">
-            Charitable organizations offer essential support, including education, healthcare, food, and shelter to those in need.
+          Have questions about how to use the library system? Find answers about borrowing, managing books, and viewing your summaries.
           </p>
         </div>
         <FAQAccordion></FAQAccordion>

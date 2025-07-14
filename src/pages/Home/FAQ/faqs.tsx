@@ -4,31 +4,32 @@ import { FiPlus, FiMinus } from "react-icons/fi";
 
 const faqs = [
   {
-    question: "How much time do I need to volunteer?",
+    question: "How do I borrow a book?",
     answer:
-      "The time required for volunteering depends on the organization and the type of work you choose. Some programs offer flexible schedules where you can volunteer for a few hours a week, while others may require a longer commitment, such as a few days or weeks. You can discuss your availability with the organization to find a suitable role that fits your schedule.",
+      "To borrow a book, go to the 'All Books' page, click the borrow icon on your desired book, select quantity and due date, and submit the form. Make sure enough copies are available.",
   },
   {
-    question: "How Will My Donation Be Used?",
+    question: "Can I add or edit book details?",
     answer:
-      "Donations are used to support our programs, administrative costs, outreach, and emergency relief efforts. Transparency and accountability are our top priorities.",
+      "Yes! You can add a new book using the 'Create Book' button. To edit, use the pencil icon next to the book entry and update the fields as needed.",
   },
   {
-    question: "How Can I Apply for a Job with You?",
+    question: "What happens when a book has 0 copies?",
     answer:
-      "You can visit our careers page to check available job openings and apply directly through our application portal.",
+      "If the number of copies is set to 0, the book will be marked as unavailable and cannot be borrowed until more copies are added.",
   },
   {
-    question: "How Can I Participate?",
+    question: "Where can I see the borrowing summary?",
     answer:
-      "Participation is easy! Join our volunteer program, contribute to our fundraisers, or share our mission with others.",
+      "You can view the borrow summary on the 'Borrow Summary' page. It displays all borrowed books and the total quantity borrowed for each.",
   },
   {
-    question: "We Help Non-Profits Become More Effective",
+    question: "Can I delete a book from the system?",
     answer:
-      "We offer training, tools, and consulting to improve operational efficiency and maximize community impact.",
+      "Yes, use the trash icon next to any book to delete it. You'll be asked to confirm the action before the book is removed permanently.",
   },
 ];
+
 
 const FAQAccordion = () => {
 const [openIndex, setOpenIndex] = useState<number | null>(null);

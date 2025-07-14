@@ -3,33 +3,39 @@ import { Card, CardContent } from "@/components/ui/card";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const mostPopularAuthors = [
+export const mostPopularAuthors = [
   {
     name: "Stephen Hawking",
-    image: "https://upload.wikimedia.org/wikipedia/commons/e/eb/Stephen_Hawking.StarChild.jpg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Stephen_Hawking.StarChild.jpg/440px-Stephen_Hawking.StarChild.jpg",
     role: "Author",
   },
   {
     name: "Albert Einstein",
-    image: "https://upload.wikimedia.org/wikipedia/commons/d/d3/Albert_Einstein_Head.jpg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Albert_Einstein_Head.jpg/440px-Albert_Einstein_Head.jpg",
     role: "Author & Physicist",
   },
   {
     name: "Carl Sagan",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/30/Sagan_1980.jpg",
+    image:
+      "https://hips.hearstapps.com/hmg-prod/images/carl-sagan.jpg?resize=1200:*",
     role: "Author & Astronomer",
   },
   {
     name: "Neil deGrasse Tyson",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/30/Neil_deGrasse_Tyson_in_June_2017.jpg",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYbDBcsGSwYxgz0A-apk0Uh4SGE6GNlkIJbw&s",
     role: "Author & Astrophysicist",
   },
   {
     name: "Brian Greene",
-    image: "https://upload.wikimedia.org/wikipedia/commons/3/39/Brian_Greene%2C_2011.jpg",
+    image:
+      "https://pi.tedcdn.com/r/pe.tedcdn.com/images/ted/7998_254x191.jpg?w=255",
     role: "Author & String Theorist",
   },
 ];
+
 
 const sliderSettings = {
   dots: false,
